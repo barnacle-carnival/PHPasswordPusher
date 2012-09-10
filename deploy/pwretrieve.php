@@ -10,13 +10,11 @@ print PrintHeader();
       $id = $_GET['id'];
       $result = RetrieveCred($id);   
       if(empty($result[0])) {  //If no valid entry, deny access and wipe hypothetically existing records
-        NullRecord($id);
         PrintError('<p>Link Expired</p>');
-      }else {
+      } else {
         $cred = DecryptCred($result[0]['seccred']);
-        ViewCred($id);  //TODO: Add error handling that prevents password display on fail
-		PrintCred($cred);  //Print credentials
-		PrintWarning($retrievewarning);  //Print warning
+	PrintCred($cred);  //Print credentials
+	PrintWarning($retrievewarning);  //Print warning
         // print("<script>window.prompt ('Copy to clipboard: Ctrl+C, Enter', '$cred');</script>"); //TODO: Clipboard functionality
       }
   }
